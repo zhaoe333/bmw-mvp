@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cm.sys.mapper.SysResourcesMapper">
+    <resultMap id="BaseResultMap" type="com.cm.sys.entity.SysResources">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="res_url" property="resUrl" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="module" property="module" jdbcType="VARCHAR"/>
+        <result column="check_res_url" property="checkResUrl" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="cn_name" property="cnName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="createResources" parameterType="com.cm.sys.entity.SysResources" useGeneratedKeys="true" keyProperty="id">
+        insert into cm_system_resources(
+        		id,
+        		name,
+        		parent_id,
+        		type,
+        		res_url,
+        		icon,
+        		sort,
+        		description,
+        		module,
+        		check_res_url,
+        		create_time,
+        		update_time,
+        		cn_name
+        )values(
+        		#{id},
+        		#{name},
+        		#{parentId},
+        		#{type},
+        		#{resUrl},
+        		#{icon},
+        		#{sort},
+        		#{description},
+        		#{module},
+        		#{checkResUrl},
+        		#{createTime},
+        		#{updateTime},
+        		#{cnName}
+        )
+    </insert>
+
+    <update id="updateResources" parameterType="com.cm.sys.entity.SysResources">
+        update cm_system_resources
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="resUrl != null">
+                res_url = #{resUrl},
+            </if>
+            <if test="icon != null">
+                icon = #{icon},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="module != null">
+                module = #{module},
+            </if>
+            <if test="checkResUrl != null">
+                check_res_url = #{checkResUrl},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="cnName != null">
+                cn_name = #{cnName}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteResourcesById" parameterType="com.cm.sys.entity.SysResources">
+        	delete from cm_system_resources where id = #{id}
+    </delete>
+
+    <sql id="query">
+        select * from cm_system_resources
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="resUrl != null">
+                and res_url = #{resUrl}
+            </if>
+            <if test="icon != null">
+                and icon = #{icon}
+            </if>
+            <if test="description != null">
+                and description = #{description}
+            </if>
+            <if test="module != null">
+                and module = #{module}
+            </if>
+            <if test="checkResUrl != null">
+                and check_res_url = #{checkResUrl}
+            </if>
+            <if test="cnName != null">
+                and cn_name = #{cnName}
+            </if>
+            <if test="startTime != null and  endTime != null">
+                and (create_time between #{startTime} and #{endTime})
+            </if>
+        </where>
+            order by  sort  asc
+    </sql>
+
+    <select id="selectResourcesByQuery" resultMap="BaseResultMap" parameterType="com.cm.sys.query.SysResourcesQuery">
+        <include refid="query"></include>
+    </select>
+
+    <select id="getRoleRes" resultMap="BaseResultMap" parameterType="string">
+		SELECT res.*  FROM cm_system_role_resources roleres RIGHT JOIN cm_system_resources res ON roleres.res_id = res.id
+        WHERE roleres.role_id = #{roleId} order by res.sort asc
+	</select>
+
+</mapper>

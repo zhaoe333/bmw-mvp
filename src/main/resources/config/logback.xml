@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<contextName>bmw-mvp</contextName>
+	<!-- 常用logback-DR 配置 -->
+	<appender name="DR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/honda.log</file>
+		<encoder>
+			<pattern>#BMW#%d %5p %c[%M]:%L - %m%n</pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/bmw.%d{-yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>60</maxHistory>
+			<totalSizeCap>3GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder>
+			<pattern>#BMW#%d %5p %c[%M]:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+	<root level="INFO">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="DR" />
+	</root>
+<!--	<logger name="com.cm.team.service" level="DEBUG"/>-->
+</configuration>

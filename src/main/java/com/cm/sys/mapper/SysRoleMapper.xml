@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cm.sys.mapper.SysRoleMapper">
+    <resultMap id="BaseResultMap" type="com.cm.sys.entity.SysRole">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="cn_name" property="cnName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="createRole" parameterType="com.cm.sys.entity.SysRole" useGeneratedKeys="true"
+            keyProperty="id">
+		insert into cm_system_role(
+		id,
+		name,
+		description,
+		code,
+		parent_Id,
+		delete_flag,
+		create_time,
+		update_time,
+		cn_name
+		)values(
+		#{id},
+		#{name},
+		#{description},
+		#{code},
+		#{parentId},
+		#{deleteFlag},
+		#{createTime},
+		#{updateTime},
+		#{cnName}
+		)
+	</insert>
+    <update id="updateRole" parameterType="com.cm.sys.entity.SysRole">
+        update cm_system_role
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="deleteFlag != -1">
+                delete_flag = #{deleteFlag},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="cnName != null">
+                cn_name = #{cnName}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteRoleById" parameterType="com.cm.sys.entity.SysRole">
+		delete from
+		cm_system_role where id = #{id}
+	</delete>
+
+    <sql id="query">
+        select * from cm_system_role
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                parent_id = #{parentId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="deleteFlag != null">
+                and delete_flag = #{deleteFlag}
+            </if>
+            <if test="cnName != null">
+                and cn_name = #{cnName}
+            </if>
+            <if
+                    test="startTime != null and endTime != null and startTime != '' and endTime !=''">
+                and (create_time between #{startTime} and #{endTime})
+            </if>
+
+        </where>
+
+    </sql>
+
+    <select id="selectRoleByQuery" resultMap="BaseResultMap" parameterType="com.cm.sys.query.SysRoleQuery">
+        <include refid="query"></include>
+    </select>
+
+
+
+</mapper>

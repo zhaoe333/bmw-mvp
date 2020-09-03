@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cm.sys.mapper.SysRoleResourcesMapper">
+    <resultMap id="BaseResultMap" type="com.cm.sys.entity.SysRoleResources">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="res_id" property="resId" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="createRoleResources" parameterType="com.cm.sys.entity.SysRoleResources"
+            useGeneratedKeys="true" keyProperty="id">
+		insert into
+		cm_system_role_resources(
+		id,
+		res_id,
+		role_id
+		)values(
+		#{id},
+		#{resId},
+		#{roleId}
+		)
+	</insert>
+
+    <delete id="deleteRoleResourcesByRoleId" parameterType="com.cm.sys.query.SysRoleResourcesQuery">
+		delete from
+		cm_system_role_resources where role_id = #{roleId}
+	</delete>
+
+    <sql id="query">
+        select * from cm_system_role_resources
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="resId != null">
+                and res_id = #{resId}
+            </if>
+            <if test="roleId != null">
+                and role_Id = #{roleId}
+            </if>
+        </where>
+    </sql>
+    <select id="selectRoleResourcesByQuery" resultMap="BaseResultMap"
+            parameterType="com.cm.sys.query.SysRoleResourcesQuery">
+        <include refid="query"></include>
+    </select>
+
+</mapper>
