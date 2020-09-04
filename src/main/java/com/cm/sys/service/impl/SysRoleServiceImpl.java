@@ -3,6 +3,7 @@ package com.cm.sys.service.impl;
 import com.cm.common.constant.CommonConstants;
 import com.cm.common.exception.FMException;
 import com.cm.common.http.FMResponseCode;
+import com.cm.common.query.PageFinder;
 import com.cm.common.tree.BaseTree;
 import com.cm.common.tree.Node;
 import com.cm.common.utils.BeanUtil;
@@ -17,6 +18,8 @@ import com.cm.sys.query.SysRoleResourcesQuery;
 import com.cm.sys.query.SysUserRoleQuery;
 import com.cm.sys.query.vo.SysRoleVo;
 import com.cm.sys.service.SysRoleService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -180,13 +183,20 @@ public class SysRoleServiceImpl implements SysRoleService {
 
 	}
 
+	@Override
+	public PageFinder<SysRole> getRolePageByQuery(SysRoleQuery query) throws Exception {
+		PageHelper.startPage(query.getPageNo(), query.getPageSize());
+		List<SysRole> roles = sysRoleMapper.selectRoleByPageQuery(query);
+		return new PageFinder<SysRole>((Page)roles);
+	}
 
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<SysRole> getRoleByQuery(SysRoleQuery query) throws Exception {
-		List<SysRole> sysRoles = sysRoleMapper.selectRoleByQuery(query);
-		return sysRoles;
+		List<SysRole> sysRoles1 = sysRoleMapper.selectByExample(query);
+//		List<SysRole> sysRoles = sysRoleMapper.selectRoleByQuery(query);
+		return sysRoles1;
 	}
 
 

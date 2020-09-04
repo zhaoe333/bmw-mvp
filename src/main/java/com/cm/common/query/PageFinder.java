@@ -1,5 +1,6 @@
 package com.cm.common.query;
 
+import com.github.pagehelper.Page;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -83,11 +84,20 @@ public class PageFinder<T> implements Serializable{
 		}
 		refresh();
 	}
+
+	public PageFinder(Page<T> listPage) {
+		this.page = listPage.getPageNum();
+		this.pageSize = listPage.getPageSize();
+		this.rowCount = (int)listPage.getTotal();
+		this.pageCount = listPage.getPages();
+		this.data = listPage.getResult();
+		refresh();
+	}
 	
 	/**
 	 * 取总页数
 	 */
-	private final int getTotalPageCount() {
+	private int getTotalPageCount() {
 		if (rowCount % pageSize == 0)
 			return rowCount / pageSize;
 		else

@@ -18,6 +18,8 @@ import com.cm.sys.query.SysUserQuery;
 import com.cm.sys.query.SysUserRoleQuery;
 import com.cm.sys.query.vo.SysUserVo;
 import com.cm.sys.service.SysUserService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -163,11 +165,9 @@ public class SysUserServiceImpl implements SysUserService {
 	@Override
 	@Transactional(readOnly=true)
 	public PageFinder<SysUser> getUserPageByQuery(SysUserQuery query) throws Exception{
-		query.setFirstNo((query.getPageNo()-1)*query.getPageSize());
-		Integer count = sysUserMapper.selectUserCountQuery(query);
+		PageHelper.startPage(query.getPageNo(), query.getPageSize());
 		List<SysUser> SysUsers = sysUserMapper.selectUserByQuery(query);
-		PageFinder<SysUser> pageFinder = new PageFinder<>(query.getPageNo(), query.getPageSize(), count, SysUsers);
-		return pageFinder;
+		return new PageFinder<SysUser>((Page)SysUsers);
 	}
 
 	@Override

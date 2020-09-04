@@ -111,6 +111,8 @@
         <include refid="query"></include>
     </select>
 
-
+    <select id="selectRoleByPageQuery" resultMap="BaseResultMap" parameterType="com.cm.sys.query.SysRoleQuery">
+        <include refid="query"></include>
+    </select>
 
 </mapper>

@@ -2,6 +2,7 @@ package com.cm.sys.mapper;
 
 import com.cm.sys.entity.SysRole;
 import com.cm.sys.query.SysRoleQuery;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author: cuijie
  * @date: 2018/12/69:48 AM
  */
-public interface SysRoleMapper  {
+public interface SysRoleMapper extends Mapper<SysRole> {
 	/**
 	 * 创建角色
 	 * @param sysRole
@@ -47,8 +48,11 @@ public interface SysRoleMapper  {
 	 */
 	List<SysRole> selectRoleByQuery(SysRoleQuery query)throws Exception;
 
-
-
-
-
+	/**
+	 * 查询数据
+	 * @param query
+	 * @return
+	 * @throws Exception
+	 */
+	List<SysRole> selectRoleByPageQuery(SysRoleQuery query)throws Exception;
 }

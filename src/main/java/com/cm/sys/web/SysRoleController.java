@@ -146,6 +146,25 @@ public class SysRoleController extends BaseController {
     }
 
     /**
+     * 分页查询角色
+     *
+     * @param query
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation("查询角色分页")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "系统角色列表", response = SysRole.class, responseContainer = "list")})
+    @ApiImplicitParams({@ApiImplicitParam(name = "$pageNo,pageSize", required = false)})
+    @RequestMapping(value = "/pageQuery", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String pageQuerySystemRole(@ApiParam(value = "系统角色信息", required = true) @RequestBody SysRoleQuery query,
+                                  HttpServletRequest request) throws Exception {
+        return response(sysRoleService.getRolePageByQuery(query));
+    }
+
+    /**
      * 分配角色菜单
      * @param query
      * @param request

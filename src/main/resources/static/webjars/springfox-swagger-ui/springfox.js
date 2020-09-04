@@ -1,7 +1,7 @@
 $(function() {
   var baseUrl;
   var springfox = {
-    "apiUrl":"http://127.0.0.1:7002/honda-com",
+    "apiUrl":"http://127.0.0.1:7002/bmw-mvp",
     "getBaseUrl": function() {
       if (baseUrl === undefined) {
         var urlMatches = /(.*)\/swagger-ui.html.*/.exec(window.location.href);

@@ -139,9 +139,6 @@
 
     <select id="selectUserByQuery" resultMap="BaseResultMap" parameterType="com.cm.sys.query.SysUserQuery">
         <include refid="query"/>
-        <if test="firstNo != null and firstNo != '' ">
-            limit ${firstNo},${pageSize}
-        </if>
     </select>
 
     <select id="selectUserCountQuery" resultType="int" parameterType="com.cm.sys.query.SysUserQuery">

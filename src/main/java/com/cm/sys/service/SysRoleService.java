@@ -1,7 +1,10 @@
 package com.cm.sys.service;
 
+import com.cm.common.query.PageFinder;
 import com.cm.sys.entity.SysRole;
+import com.cm.sys.entity.SysUser;
 import com.cm.sys.query.SysRoleQuery;
+import com.cm.sys.query.SysUserQuery;
 import com.cm.sys.query.vo.SysRoleVo;
 
 import java.util.List;
@@ -72,7 +75,13 @@ public interface SysRoleService {
 	void addRoleRes(SysRoleQuery query) throws Exception;
 
 
-
+	/**
+	 * 根据查询条件分页查询用户
+	 * @param query
+	 * @return pageFinder
+	 * @throws Exception
+	 */
+	PageFinder<SysRole> getRolePageByQuery(SysRoleQuery query) throws Exception;
 
 
 
