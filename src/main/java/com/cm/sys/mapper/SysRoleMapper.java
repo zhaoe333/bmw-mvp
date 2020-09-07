@@ -2,7 +2,6 @@ package com.cm.sys.mapper;
 
 import com.cm.sys.entity.SysRole;
 import com.cm.sys.query.SysRoleQuery;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * @author: cuijie
  * @date: 2018/12/69:48 AM
  */
-public interface SysRoleMapper extends Mapper<SysRole> {
+public interface SysRoleMapper{
 	/**
 	 * 创建角色
 	 * @param sysRole

@@ -3,6 +3,7 @@ package com.cm.sys.query.vo;
 import com.cm.common.query.Query;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @date: 2018/12/69:48 AM
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SysRoleVo extends Query implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

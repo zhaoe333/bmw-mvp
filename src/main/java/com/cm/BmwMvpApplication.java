@@ -3,7 +3,7 @@ package com.cm;
 import com.cm.common.interceptor.PrivilegeInterceptor;
 import com.cm.common.spring.TSPMappingJackson2HttpMessageConverter;
 import com.cm.common.spring.TSPStringHttpMessageConverter;
-import tk.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

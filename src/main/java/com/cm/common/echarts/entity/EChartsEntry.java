@@ -2,11 +2,13 @@ package com.cm.common.echarts.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 最基础的echart数据 name&value value为单个值
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class EChartsEntry extends EChartsBaseEntry {
 
     @ApiModelProperty("单个值")

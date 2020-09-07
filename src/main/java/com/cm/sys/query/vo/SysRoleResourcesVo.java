@@ -3,6 +3,7 @@ package com.cm.sys.query.vo;
 import com.cm.common.query.Query;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @version V1.0
@@ -12,6 +13,7 @@ import lombok.Data;
  * @date: 2018/12/69:48 AM
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SysRoleResourcesVo extends Query implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -16,7 +16,6 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
@@ -30,6 +29,7 @@ import java.io.FileOutputStream;
 import java.io.Writer;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /***
@@ -221,7 +221,7 @@ public class HttpUtil {
 			for (String key : keySet) {
 				addParam(nvps, key,params.get(key));
 			}
-			httpPost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
+			httpPost.setEntity(new UrlEncodedFormEntity(nvps, StandardCharsets.UTF_8));
 			httpResponse = httpClient.execute(httpPost,context);
 //			if(httpResponse.getStatusLine().getStatusCode() == 200) {
 				HttpEntity entity = httpResponse.getEntity();
@@ -268,7 +268,7 @@ public class HttpUtil {
 			for (String key : keySet) {
 				addParam(nvps, key,params.get(key));
 			}
-			httpPost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
+			httpPost.setEntity(new UrlEncodedFormEntity(nvps, StandardCharsets.UTF_8));
 			httpResponse = httpClient.execute(httpPost,context);
 //			if(httpResponse.getStatusLine().getStatusCode() == 200) {
 				HttpEntity entity = httpResponse.getEntity();
@@ -310,7 +310,7 @@ public class HttpUtil {
 			for (String key : keySet) {
 				addParam(bulider, key,params.get(key));
 			}
-			httpPost.setEntity(bulider.seContentType(ContentType.MULTIPART_FORM_DATA).setCharset(Charset.forName("UTF-8")).build());
+			httpPost.setEntity(bulider.setContentType(ContentType.MULTIPART_FORM_DATA).setCharset(Charset.forName("UTF-8")).build());
 			httpResponse = httpClient.execute(httpPost,context);
 //			if(httpResponse.getStatusLine().getStatusCode() == 200) {
 				HttpEntity entity = httpResponse.getEntity();
@@ -494,7 +494,7 @@ public class HttpUtil {
 	
 	public static String uploadFile(String url,Map<String,String> headers, Map<String, Object> params) throws Exception{
 		String result = "{}";
-		HttpClient httpClient = new DefaultHttpClient();
+		HttpClient httpClient = HttpClients.createDefault();
 		HttpPost httpPost = new HttpPost(url);
 
 		Set<String> headerKeys = headers.keySet();

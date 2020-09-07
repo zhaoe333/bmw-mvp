@@ -194,9 +194,8 @@ public class SysRoleServiceImpl implements SysRoleService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<SysRole> getRoleByQuery(SysRoleQuery query) throws Exception {
-		List<SysRole> sysRoles1 = sysRoleMapper.selectByExample(query);
-//		List<SysRole> sysRoles = sysRoleMapper.selectRoleByQuery(query);
-		return sysRoles1;
+		List<SysRole> sysRoles = sysRoleMapper.selectRoleByQuery(query);
+		return sysRoles;
 	}
 
 

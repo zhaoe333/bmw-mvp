@@ -3,6 +3,7 @@ package com.cm.sys.query;
 import com.cm.common.query.Query;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @version V1.0
@@ -12,6 +13,7 @@ import lombok.Data;
  * @date: 2018/12/69:48 AM
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SysUserRoleQuery extends Query {
 	@ApiModelProperty("系统用户角色关联id")
 	private String id;
