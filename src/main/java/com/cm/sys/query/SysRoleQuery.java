@@ -15,7 +15,6 @@ import java.util.List;
  * @date: 2018/12/69:48 AM
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class SysRoleQuery extends Query {
 	@ApiModelProperty("系统角色id")
 	private String id;

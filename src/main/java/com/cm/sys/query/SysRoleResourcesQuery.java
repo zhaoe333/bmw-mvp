@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
  * @date: 2018/12/69:48 AM
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class SysRoleResourcesQuery extends Query {
 	@ApiModelProperty("系统角色权限关联id")
 	private String id;

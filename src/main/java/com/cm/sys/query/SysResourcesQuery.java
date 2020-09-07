@@ -13,7 +13,6 @@ import lombok.EqualsAndHashCode;
  * @date: 2018/12/69:48 AM
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class SysResourcesQuery extends Query {
 	@ApiModelProperty("系统菜单id")
 	private String id;

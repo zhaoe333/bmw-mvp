@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class EChartsMultiEntry extends EChartsBaseEntry {
 
     @ApiModelProperty("多个值,一般用于散点图,地图之类")

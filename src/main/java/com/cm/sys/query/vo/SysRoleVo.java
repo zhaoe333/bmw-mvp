@@ -15,7 +15,6 @@ import java.util.List;
  * @date: 2018/12/69:48 AM
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class SysRoleVo extends Query implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
